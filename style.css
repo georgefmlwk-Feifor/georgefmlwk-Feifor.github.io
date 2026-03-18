@@ -1,0 +1,239 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Monospc821 BT", sans-serif;
+}
+/* 容器样式（居中+限制宽度） */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #3498db;
+}
+
+/* 主页横幅样式 */
+.hero {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    padding: 8rem 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    background-color: white;
+    color: #3498db;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* 关于我们样式 */
+.about {
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.about-cards {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card i {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* 联系表单样式 */
+.contact {
+    padding: 6rem 0;
+    background-color: #f8f9fa;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    text-align: center;
+}
+
+#contactForm {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+/* 原有样式（导航、hero、卡片等）保留 */
+
+/* 新增：悬浮小窗样式 */
+/* 父容器：给按钮做相对定位，保证悬浮窗基于按钮定位 */
+.btn-wrapper {
+  position: relative;
+  display: inline-block; /* 保证容器只包裹按钮，不占整行 */
+}
+
+/* 悬浮图片容器：默认隐藏，定位在按钮右侧 */
+.float-img {
+  position: absolute;
+  top: -20px;
+  left: 120%;
+  display: none;
+  /* 1. 去掉白色背景，改为透明 */
+  background: transparent; 
+  /* 2. 去掉内边距，避免额外空白 */
+  padding: 0; 
+  border-radius: 8px;
+  /* 3. 透明阴影（可选，提升层次感） */
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15); 
+  z-index: 100;
+  /* 4. 让容器宽度跟随图片自动适应 */
+  width: fit-content; 
+  height: fit-content;
+}
+
+
+/* 显示悬浮窗的类 */
+.float-img.show {
+  display: block;
+  /* 淡入动画 */
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateX(10px);}
+  to {opacity: 1; transform: translateX(0);}
+}
+
+/* 新增：图片样式（去掉固定宽度，让图片自适应） */
+.float-img img {
+  border-radius: 8px;
+  /* 去掉固定width，让图片显示原始尺寸 */
+  max-width: 300px; /* 可选：限制最大宽度，避免图片过大 */
+  height: auto; /* 高度自动，保持比例 */
+}
+
+/* 响应式适配（手机端） */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .about h2, .contact h2 {
+        font-size: 2rem;
+    }
+}
